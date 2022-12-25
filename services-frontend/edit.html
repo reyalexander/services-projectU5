@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container mt-4">
+      <h1>Crear TODO</h1>
+      <form method="post" id="form">
+        <div class="form-group">
+          <label for="Body">Title</label>
+          <textarea class="form-control" id="title" rows="1"></textarea>
+          <div id="msg" class="alert alert-danger d-none" role="alert">El título no puede estar en blanco</div>
+          <label for="Body" class="mt-2">Body</label>
+          <textarea class="form-control" id="body" rows="3"></textarea>
+          <div id="msg1" class="alert alert-danger d-none" role="alert">El cuerpo no puede estar en blanco</div>
+        </div>
+        <div class="form-group mt-2">
+          <label for="status">Status</label>
+          <select class="form-control" id="status">
+            <option>0</option>
+            <option>1</option>
+            <option>2</option>
+          </select>
+        </div>
+        <div class="mt-2">
+          <button onclick="submit" class="btn btn-primary">Actualizar</button>
+          <button onclick="returnTodo()" class="btn btn-danger">Cancelar</button>
+        </div>
+      </form>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./js/put.js"></script>
+  </body>
+</html>
