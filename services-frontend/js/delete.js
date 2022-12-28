@@ -11,7 +11,7 @@ async function deleteTodo() {
       cancelButtonText: "Cancelar",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await fetch(`http://127.0.0.1:8000/api2/api/v1/todo/${id}/`, {
+        await fetch(`http://127.0.0.1:8000/api/services/add_service/${id}/`, {
           method: "DELETE",
           mode: "cors",
         }).then((response) => {

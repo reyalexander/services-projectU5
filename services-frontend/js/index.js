@@ -34,6 +34,19 @@ function renderTasks(data) {
       const diff = fechaFin - fechaInicio;
       const format_date = Math.round(diff / (1000 * 60 * 60 * 24));
       const {service, amount, payment_date , id} = task;
+      console.log(task)
+      for (const i in task){
+        datos = task.service
+        console.log('Service: '+ {i: i})
+        
+          if (task[i].service === 'NF'){
+            console.log('Hol')
+            console.log(task.service.i)
+            task.service[i] = 'Netflix'
+          
+        }
+        
+      }
       
       main.innerHTML += `
       <div class="col-4">
@@ -41,9 +54,9 @@ function renderTasks(data) {
           <div class="card-body">
             <h4>${service}</h2>
             <p>
-              ${amount}
+              Amount: ${amount}
             </p>
-            <p class="card-text"><small class="text-muted">Payment date: ${payment_date} días</small></p>
+            <p class="card-text"><small class="text-muted">Payment date: ${payment_date}</small></p>
           </div>
           <div class="mb-3 text-center">
             <a href="./edit.html?id=${id}" class="btn btn-primary">Editar</a>
@@ -58,22 +71,26 @@ function renderTasks(data) {
 function renderTodo(data) {
   const {service, amount , payment_date, id} = data;
   body.innerHTML = `
-  <div class="col-lg-8 mx-auto p-4 py-md-5">
-    <main>
-      <h1>Detalle</h1>
-      <p class="fs-5 col-md-8">
-        Título: ${service}
-      </p>
-      <p class="fs-5 col-md-8">
-        ${amount}
-      </p>
-      <p class="fs-5 col-md-8"><small>Payment date: ${payment_date}</small></p>
-      <div class="mb-5">
-        <a href="/" class="btn btn-primary">Regresar</a>
-        <a href="./edit.html?id=${id}" class="btn btn-primary">Editar</a>
-        <button onclick="deleteTodo()" class="btn btn-danger">Eliminar</button>
+  <div class="container-sm">
+    <div class="card mt-5 shadow col-lg-4 mx-auto p-5 py-md-5 ">
+      <div class="col-lg-25 mx-auto p-4 py-md-5">
+        <main>
+          <h1 style='color:blue;'>Detail Service</h1>
+          <p class="fs-5 col-md-8">
+            Service: ${service}
+          </p>
+          <p class="fs-5 col-md-8">
+            Amount: ${amount}
+          </p>
+          <p class="fs-5 col-md-8"><small>Payment date:<br> ${payment_date}</small></p>
+          <div class="mb-5">
+            <a href="./index.html" class="btn btn-primary">Regresar</a>
+            <a href="./edit.html?id=${id}" class="btn btn-primary">Editar</a>
+            <button onclick="deleteTodo()" class="btn btn-danger">Eliminar</button>
+          </div>
+        </main>
       </div>
-    </main>
+    </div>
   </div>`;
 }
 

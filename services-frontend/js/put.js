@@ -82,7 +82,8 @@ async function setData(){
 }
 
 function returnTodo(){
-    window.location.replace(`./detail.html?id=${id}`);
+  const id = new URLSearchParams(window.location.search).get("id");
+  window.location.replace(`./detail.html?id=${id}`);
 }
 
 setData();

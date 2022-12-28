@@ -61,9 +61,16 @@ async function apiLoginToken(){
     console.log(res)
     const resData = await res.json();
     Tokens = resData;
-    //window.location.href = "./index.html";
-    console.log(Tokens)
-    console.log(resData.tokens.access, resData.email)
+    console.log(resData.ok)
+    if (resData.ok == true){
+        window.location.href = "./index.html";
+    }else{
+        Swal.fire({
+            icon:"error",
+            title: 'Oops...',
+            text: "¡Email o contraseña incorrecta!"
+        }) 
+    }
     tokenSave(resData.tokens.access, resData.email);
     return resData;
 }
