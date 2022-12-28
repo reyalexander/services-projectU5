@@ -1,10 +1,11 @@
 
 const formTodo = document.getElementById('form');
-const title = document.getElementById('title');
-const body = document.getElementById('body');
-const status = document.getElementById('status');
+const service = document.getElementById('service');
+const amount = document.getElementById('amount');
+const payment_date = document.getElementById('payment-date');
 let msg = document.getElementById("msg");
 let msg1 = document.getElementById("msg1");
+let msg2 = document.getElementById("msg2");
 formTodo.addEventListener('submit', (event) => {
     event.preventDefault();
     formValidation();
@@ -12,30 +13,37 @@ formTodo.addEventListener('submit', (event) => {
 
 
 let formValidation = () => {
-  if (title.value === "") {
+  if (service.value === "") {
     msg.classList.remove("d-none");
   }
-  if(body.value === ""){
+  if(amount.value === ""){
     msg1.classList.remove("d-none");
   }
-  if (title.value !== "" && body.value !== ""){
+  if(payment_date.value === ""){
+    msg2.classList.remove("d-none");
+  }
+  if (service.value !== "" && amount.value !== "" && payment_date.value !== ""){
     msg.classList.add("d-none");
     msg1.classList.add("d-none");
+    msg2.classList.add("d-none");
     acceptData();
   }
 };
 
+URL = 'http://127.0.0.1:8000/api/'
 async function acceptData(){
     const data = {
-        title: title.value,
-        body: body.value,
-        status: status.value,
-        author: 1
+        service: service.value,
+        amount: amount.value,
+        payment_date: payment_date.value,
+        user_id: 2,
     }
-    await fetch("http://127.0.0.1:8000/api2/api/v1/todo/", {
+    console.log(data)
+    await fetch(URL + 'services/add_service/', {
         method: "POST",
         mode: "cors",
         headers: {
+            'Accept':'application/json',
             'Content-Type': 'application/json'
           },
         body: JSON.stringify(data)

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>rest_api_token!</title>  
+    <script src="js/login.js" defer></script>
+  </head>  
+  <body>
+    <h1>Rest API Token</h1>
+    
+    <p>
+      En este ejemplo pasa todo en la consola de javascript de tu navegador. La podés abrir con F12 o Ctrl+Shift+J o desde el menu en Chrome o Firefox. Y para el resto ver el código en <a href="script.js">script.js</a>
+    </p>
+
+    <pre>
+>> apiLogin("tu_usuario","LaClaveQuePusiste").then(console.log)
+Promise { <state>: "pending" }
+
+Object { refresh: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTYxODMzNzk4NSwianRpIjoiMzhmZjViMGE3ZDUwNDkxNWExNjllNDIyNGRkMWZhZWYiLCJ1c2VyX2lkIjoxfQ.Jys7Bp_KrVIgt62a1sJ4NbXNyrD31z9tYzqEoN4V1a0", access: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjE3NzM0OTg1LCJqdGkiOiI4NWM5MWM5YTE1ZTU0MTI1YThjOGM0MzgzYjViMjk2OCIsInVzZXJfaWQiOjF9.XEp8ao6L7_phNIN5nZR2GdIiXz0kKIDx5WE_1kjPDnE" }
+
+>> fetchConToken('https://si.podemosaprender.org/api/token/user/').then(x=>x.json()).then(console.log)
+Promise { <state>: "pending" }
+
+Object { user: "tu_usuario", auth: "yqwuyeuyqhhwhwh11hjhmirasitevoyadarmiclavejajaja" }
+
+    </pre>
+    <!-- include the Glitch button to show what the webpage is about and
+          to make it easier for folks to view source and remix -->
+    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
+    <script src="https://button.glitch.me/button.js" defer></script>
+  </body>
+</html>

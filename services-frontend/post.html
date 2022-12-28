@@ -13,30 +13,31 @@
     />
   </head>
   <body>
-    <div class="container mt-4">
-      <h1>Crear TODO</h1>
-      <form method="post" id="form">
-        <div class="form-group">
-          <label for="Body">Title</label>
-          <textarea class="form-control" id="title" rows="1"></textarea>
-          <div id="msg" class="alert alert-danger d-none" role="alert">El título no puede estar en blanco</div>
-          <label for="Body" class="mt-2">Body</label>
-          <textarea class="form-control" id="body" rows="3"></textarea>
-          <div id="msg1" class="alert alert-danger d-none" role="alert">El cuerpo no puede estar en blanco</div>
+    <div class="container-sm">
+      <div class="card mt-5 shadow col-lg-4 mx-auto p-5 py-md-5 ">
+          <!-- Section: Design Block -->
+        <div class="container mt-4">
+          <h1 class="text-center" style="color: blue;">Create Service</h1>
+          <form method="post" id="form">
+            <div class="form-group">
+              <label for="Body">Service</label>
+              <input class="form-control" id="service" type="text"></input>
+              <div id="msg" class="alert alert-danger d-none" role="alert">El título no puede estar en blanco</div>
+              <label for="Body" class="mt-2">Amount</label>
+              <input class="form-control" id="amount" type="number" step="0.01"></input>
+              <div id="msg1" class="alert alert-danger d-none" role="alert">El cuerpo no puede estar en blanco</div>
+              <label for="Body" class="mt-2">Payment Date</label>
+              <input class="form-control" type="date" id="payment-date"></input>
+              <div id="msg2" class="alert alert-danger d-none" role="alert">El cuerpo no puede estar en blanco</div>
+            </div>
+          
+            <div class="mt-2 text-center pt-3">
+              <button onclick="submit" class="btn btn-primary">Crear</button>
+              <a href="./index.html" class="btn btn-danger">Cancelar</a>
+            </div>
+          </form>
         </div>
-        <div class="form-group mt-2">
-          <label for="status">Status</label>
-          <select class="form-control" id="status">
-            <option>0</option>
-            <option>1</option>
-            <option>2</option>
-          </select>
-        </div>
-        <div class="mt-2">
-          <button onclick="submit" class="btn btn-primary">Crear</button>
-          <a href="./index.html" class="btn btn-danger">Cancelar</a>
-        </div>
-      </form>
+      </div>
     </div>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
