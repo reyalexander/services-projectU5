@@ -1,16 +1,19 @@
 from django.contrib import admin
 from django.urls import path
 from rest_framework import routers
-from . import views
-from .api import ServicesViewSet
+from django.views import View
+from .views import *
+from .api import *
 
 router = routers.DefaultRouter()
 
+router.register(r'add_payment',PaymentUserServicesViewSet, 'paymentCustom')
 router.register(r'add_service',ServicesViewSet, 'serviciosCustom')
 
-'''urlpatterns = [
-    #path('task/complete/<id>', views.complete_task),
-    #path('moneda/', views.TodoViewSet.as_view({'get': 'list'})),
-]'''
-
+router.register(r'list_payment',PaymentsViewSets, 'listPaymentsCustom')
+'''
+urlpatterns = [
+    path('payments/', payment ,name='payments'),
+]
+'''
 urlpatterns = router.urls

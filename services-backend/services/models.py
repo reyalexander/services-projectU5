@@ -2,24 +2,24 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from users.models import User
 
-class Payment_User(models.Model):
-    class Services(models.TextChoices):
-        NETFLIX = 'NF', _('Netflix')
-        AMAZON = 'AP', _('Amazon Video')
-        START = 'ST', _('Start+')
-        PARAMOUNT = 'PM', _('Paramount+')
+class Services(models.Model):
+    name = models.CharField(max_length=20)
+    description = models.CharField(max_length=200)
+    logo = models.URLField(max_length=1000)
 
-    service = models.CharField(
-        max_length=2,
-        choices=Services.choices,
-        default=Services.NETFLIX,
-    )
-    payment_date = models.DateField(auto_now_add=True)
-    user_id = models.ForeignKey(User, on_delete =models.CASCADE, related_name='users')
+    def __str__(self) -> str:
+        return self.name
+
+class Payment_User(models.Model): 
     amount = models.FloatField(default=0.0)
+    payment_date = models.DateField(auto_now=True)
+    expiration_date = models.DateField(null=True)
+    user = models.ForeignKey(User, on_delete =models.CASCADE, related_name='user_payments')
+    service = models.ForeignKey(Services, on_delete=models.CASCADE, related_name='service_payments')
 
+    def __str__(self) -> str:
+        return f'{self.user.first_name} - {self.service.name}'
 
-"""Expired_payments
-- Id
-- Payment_user_id
-- Penalty_fee_amount"""
+class Expired_payments(models.Model):
+    penalty_fee_amount = models.FloatField(default=0.0)
+    payment_user = models.ForeignKey(Payment_User, on_delete=models.CASCADE, related_name='payment_user')
