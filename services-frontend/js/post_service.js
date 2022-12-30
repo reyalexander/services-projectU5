@@ -1,8 +1,8 @@
 
 const formTodo = document.getElementById('form');
-const service = document.getElementById('service');
-const amount = document.getElementById('amount');
-const expiration_date = document.getElementById('expiration_date');
+const nameS = document.getElementById('name');
+const description = document.getElementById('description');
+const logo = document.getElementById('logo');
 let msg = document.getElementById("msg");
 let msg1 = document.getElementById("msg1");
 let msg2 = document.getElementById("msg2");
@@ -13,16 +13,16 @@ formTodo.addEventListener('submit', (event) => {
 
 
 let formValidation = () => {
-  if (service.value === "") {
+  if (nameS.value === "") {
     msg.classList.remove("d-none");
   }
-  if(amount.value === ""){
+  if(description.value === ""){
     msg1.classList.remove("d-none");
   }
-  if(expiration_date.value === ""){
+  if(logo.value === ""){
     msg2.classList.remove("d-none");
   }
-  if (service.value !== "" && amount.value !== "" && expiration_date.value !== ""){
+  if (nameS.value !== "" && description.value !== "" && logo.value !== ""){
     msg.classList.add("d-none");
     msg1.classList.add("d-none");
     msg2.classList.add("d-none");
@@ -33,13 +33,13 @@ let formValidation = () => {
 URL = 'http://127.0.0.1:8000/api/'
 async function acceptData(){
     const data = {
-        service: service.value,
-        amount: amount.value,
-        expiration_date: expiration_date.value,
+        name: nameS.value,
+        description: description.value,
+        logo: logo.value,
         user: 1,
     }
     console.log(data)
-    await fetch(URL + 'services/add_payment/', {
+    await fetch(URL + 'services/add_service/', {
         method: "POST",
         mode: "cors",
         headers: {

@@ -21,21 +21,19 @@
           <form method="post" id="form">
             <div class="form-group">
               <!-- Service input -->
-              <label class="form-label" for="service">Servicio</label>
-              <select id="service" class="form-select" aria-label="Default select example">
-                <option selected>Seleccione un servicio</option>
-              </select>
-              
-              <label for="Body" class="mt-2">Amount</label>
-              <input class="form-control" id="amount" type="number" step="0.01"></input>
-              <div id="msg1" class="alert alert-danger d-none" role="alert">El cuerpo no puede estar en blanco</div>
-              <label for="Body" class="mt-2">Expiration Date</label>
-              <input class="form-control" type="date" id="expiration_date"></input>
-              <div id="msg2" class="alert alert-danger d-none" role="alert">El cuerpo no puede estar en blanco</div>
+              <label for="Body" class="mt-2">Name: </label>
+              <input class="form-control" id="name" type="text"></input>
+              <div id="msg" class="alert alert-danger d-none" role="alert">El nombre no puede estar en blanco</div>
+              <label for="Body" class="mt-2">Description: </label>
+              <input class="form-control" id="description" type="text"></input>
+              <div id="msg1" class="alert alert-danger d-none" role="alert">La descripcion no puede estar en blanco</div>
+              <label for="Body" class="mt-2">Logo: </label>
+              <input class="form-control" type="text" id="logo"></input>
+              <div id="msg2" class="alert alert-danger d-none" role="alert">El logo no puede estar en blanco</div>
             </div>
         <div class="mt-3 text-center">
           <button onclick="submit" class="btn btn-primary">Actualizar</button>
-          <button onclick="returnTodo()" class="btn btn-danger">Cancelar</button>
+          <button onclick="returnServicios()" class="btn btn-danger">Cancelar</button>
         </div>
       </form>
     </div>
@@ -45,6 +43,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="./js/put.js"></script>
+    <script src="./js/put_service.js"></script>
   </body>
 </html>

@@ -1,7 +1,7 @@
 const formTodo = document.getElementById('form');
-const service = document.getElementById('service');
-const amount = document.getElementById('amount');
-const expiration_date = document.getElementById('expiration_date');
+const nameS = document.getElementById('name');
+const description = document.getElementById('description');
+const logo = document.getElementById('logo');
 let msg = document.getElementById("msg");
 let msg1 = document.getElementById("msg1");
 let msg2 = document.getElementById("msg2");
@@ -12,14 +12,18 @@ formTodo.addEventListener('submit', (event) => {
 
 
 let formValidation = () => {
-  if(amount.value === ""){
+  if(nameS.value === ""){
+    msg.classList.remove("d-none");
+  }
+  if(description.value === ""){
     msg1.classList.remove("d-none");
   }
-  if(expiration_date.value === ""){
+  if(logo.value === ""){
     msg2.classList.remove("d-none");
   }
-  if ( amount.value !== "" && expiration_date.value !== ""){
+  if (nameS.value !== "" && description.value !== "" && logo.value !== ""){
     
+    msg.classList.add("d-none");
     msg1.classList.add("d-none");
     msg2.classList.add("d-none");
     acceptData();
@@ -29,13 +33,12 @@ let formValidation = () => {
 async function acceptData(){
     const id = new URLSearchParams(window.location.search).get("id");
     const data = {
-        service: 2,
-        amount: amount.value,
-        expiration_date: expiration_date.value,
-        user: 1,
+        name: nameS.value,
+        description: description.value,
+        logo: logo.value,
     }
     console.log(data)
-    await fetch(`http://127.0.0.1:8000/api/services/add_payment/${id}/`, {
+    await fetch(`http://127.0.0.1:8000/api/services/add_service/${id}/`, {
         method: "PUT",
         mode: "cors",
         headers: {
@@ -51,7 +54,7 @@ async function acceptData(){
                 'success'
               ).then((result) => {
                 if (result.isConfirmed) {
-                    returnTodo();
+                    returnServicios();
                 }
             }) 
         }
@@ -68,17 +71,17 @@ async function acceptData(){
 async function setData(){
   const id = new URLSearchParams(window.location.search).get("id");
     try {
-        const response = await fetch(`http://127.0.0.1:8000/api/services/add_payment/${id}/`);
+        const response = await fetch(`http://127.0.0.1:8000/api/services/add_service/${id}/`);
         const data = await response.json();
-        service.value = data.service;
-        amount.value = data.amount;
-        expiration_date.value = data.expiration_date;
+        nameS.value = data.name;
+        description.value = data.description;
+        logo.value = data.logo;
       } catch (error) {
         console.log(error);
       }
 }
 
-function returnTodo(){
+function returnServicios(){
   const id = new URLSearchParams(window.location.search).get("id");
   window.location.replace(`./detail.html?id=${id}`);
 }
