@@ -63,7 +63,7 @@ async function apiLoginToken(){
     Tokens = resData;
     console.log(resData.ok)
     if (resData.ok == true){
-        window.location.href = "./index.html";
+        window.location.href = "../index.html";
     }else{
         Swal.fire({
             icon:"error",

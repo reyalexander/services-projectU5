@@ -48,8 +48,16 @@ function renderTasks(data) {
     main.innerHTML += `      
     <div class="mb-5">
       <a href="./post.html" class="btn btn-primary">Crear Pago</a>
-      <a href="./post_service.html" class="btn btn-primary">Crear Servicio</a>
     </div>`;
+
+    for(let j=0; j < myArray.length; j++ ){
+      if (myArray[j].email == storedEmail && myArray[j].is_superuser == true){
+        main.innerHTML += `      
+        <div class="mb-5">
+          <a href="./post_service.html" class="btn btn-success">Crear Servicio</a>
+        </div>`;
+      }
+    }
     
     data.results.forEach((task) => {
       const fechaInicio = new Date(task.created_at).getTime();
@@ -60,34 +68,38 @@ function renderTasks(data) {
       
       console.log(service_payments)
       for (let i = 0; i < service_payments.length; i++) {
-        main.innerHTML += `
-          <div class="col-3">
-            <div class="card mb-2">
-              <div class="card-body">
-                <!-- Card image -->
-                <div class="col-md-4 d-none d-md-block ml-6 justify-content-center" >
-                  <img src="${logo}" width="270" height="200"
-                    alt="Card image cap" >
-                  <a href="#!">
-                    <div class="mask rgba-white-slight"></div>
-                  </a>
+        for(let h=0; h < myArray.length; h++ ){
+          if (myArray[h].email == storedEmail && myArray[h].id == service_payments[i].user){
+            main.innerHTML += `
+              <div class="col-3">
+                <div class="card mb-2">
+                  <div class="card-body">
+                    <!-- Card image -->
+                    <div class="col-md-4 d-none d-md-block ml-6 justify-content-center" >
+                      <img src="${logo}" width="270" height="200"
+                        alt="Card image cap" >
+                      <a href="#!">
+                        <div class="mask rgba-white-slight"></div>
+                      </a>
+                    </div>
+                    <!-- Card content -->
+                    <h4>${name}</h2>
+                    <p>
+                      Amount: ${service_payments[i].amount}
+                    </p>
+                    
+                    <p class="card-text"><small class="text-muted">Payment date: ${service_payments[i].payment_date}</small></p>
+                    <p class="card-text"><small class="text-muted">Expiration date: ${service_payments[i].expiration_date}</small></p>
+                  </div>
+                  
+                  <div class="mb-3 text-center">
+                    <a href="./edit.html?id=${id}" class="btn btn-primary">Editar</a>
+                    <button onclick="deleteTodo()" class="btn btn-danger">Eliminar</button>
+                  </div>
                 </div>
-                <!-- Card content -->
-                <h4>${name}</h2>
-                <p>
-                  Amount: ${service_payments[i].amount}
-                </p>
-                
-                <p class="card-text"><small class="text-muted">Payment date: ${service_payments[i].payment_date}</small></p>
-                <p class="card-text"><small class="text-muted">Expiration date: ${service_payments[i].expiration_date}</small></p>
-              </div>
-              
-              <div class="mb-3 text-center">
-                <a href="./edit.html?id=${id}" class="btn btn-primary">Editar</a>
-                <button onclick="deleteTodo()" class="btn btn-danger">Eliminar</button>
-              </div>
-            </div>
-          </div>`;
+              </div>`;
+          }
+        }
       }
       for(let i=0; i < myArray.length; i++ ){
         if(storedEmail == myArray[i].email){
@@ -105,7 +117,7 @@ function renderTasks(data) {
 
                       <ul class="dropdown-menu">
                         <li><a class="dropdown-item disabled" href="#">${myArray[i].first_name +" "+ myArray[i].last_name}</a></li>
-                        <li><a class="dropdown-item" onclick="tokenDelete()" href="./login.html">Log out</a></li>
+                        <li><a class="dropdown-item" onclick="tokenDelete()" href="services-frontend/login.html">Log out</a></li>
                       </ul>
                     </div>
                 </li>
@@ -174,33 +186,36 @@ function renderServices(data) {
       const format_date = Math.round(diff / (1000 * 60 * 60 * 24));
       const {name,description,logo, id} = service;
       
-      secondary.innerHTML += `
-        <div class="col-3">
-          <div class="card mb-2">
-            <div class="card-body">
-              <!-- Card image -->
-              <div class="col-md-2 d-none d-md-block ml-6 justify-content-center">
-                <img src="${logo}"
-                  alt="Card image cap" width="260" height="200"/>
-                <a href="#!">
-                  <div class="mask rgba-white-slight"></div>
-                </a>
+      for(let j=0; j < myArray.length; j++ ){
+        if (myArray[j].email == storedEmail && myArray[j].is_superuser == true){
+          secondary.ariaDisabled
+          secondary.innerHTML += `
+            <div class="col-3">
+              <div class="card mb-2">
+                <div class="card-body">
+                  <!-- Card image -->
+                  <div class="col-md-2 d-none d-md-block ml-6 justify-content-center">
+                    <img src="${logo}"
+                      alt="Card image cap" width="260" height="200"/>
+                    <a href="#!">
+                      <div class="mask rgba-white-slight"></div>
+                    </a>
+                  </div>
+                  <!-- Card content -->
+                  <h4>${name}</h2>
+                  <p>
+                    Description: ${description}
+                  </p>
+                </div>
+                
+                <div class="mb-3 text-center">
+                  <a href="./edit_service.html?id=${id}" class="btn btn-primary">Editar</a>
+                  <button onclick="deleteTodo()" class="btn btn-danger">Eliminar</button>
+                </div>
               </div>
-              <!-- Card content -->
-              <h4>${name}</h2>
-              <p>
-                Description: ${description}
-              </p>
-            </div>
-            
-            <div class="mb-3 text-center">
-              <a href="./edit_service.html?id=${id}" class="btn btn-primary">Editar</a>
-              <button onclick="deleteTodo()" class="btn btn-danger">Eliminar</button>
-            </div>
-          </div>
-        </div>`;
-      
-      
+            </div>`;
+        }
+      }
     });
   }
 }

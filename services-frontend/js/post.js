@@ -30,13 +30,25 @@ let formValidation = () => {
   }
 };
 
+// Retrieve the string from localStorage
+const arrayString = localStorage.getItem('myArray');
+// Convert the string back into an array
+const myArray = JSON.parse(arrayString);
+const storedEmail = JSON.parse(localStorage.getItem("email"))
+let idUser;
+for(i=0; i< myArray.length; i++){
+  if(myArray[i].email == storedEmail){
+    idUser = myArray[i].id
+  }
+}
+
 URL = 'http://127.0.0.1:8000/api/'
 async function acceptData(){
     const data = {
         service: service.value,
         amount: amount.value,
         expiration_date: expiration_date.value,
-        user: 1,
+        user: idUser,
     }
     console.log(data)
     await fetch(URL + 'services/add_payment/', {
