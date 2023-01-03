@@ -1,9 +1,29 @@
 const main = document.querySelector(".row");
+const navbar = document.querySelector("#navbar");
 const secondary = document.querySelector("#services");
 const body = document.querySelector("body");
 const body2 = document.querySelector("body2");
 
 URL = 'http://127.0.0.1:8000/api/';
+
+fetch('http://127.0.0.1:8000/api/users/')
+  .then(response => response.json())
+  .then(myArray => {
+    // Convert the array into a string
+    const arrayString = JSON.stringify(myArray);
+
+    // Store the string in localStorage
+    localStorage.setItem('myArray', arrayString);
+  });
+
+// Retrieve the string from localStorage
+const arrayString = localStorage.getItem('myArray');
+
+// Convert the string back into an array
+const myArray = JSON.parse(arrayString);
+
+let storedEmail = JSON.parse(localStorage.getItem("email"))
+
 
 async function getTask() {
   const id = new URLSearchParams(window.location.search).get("id");
@@ -68,6 +88,29 @@ function renderTasks(data) {
               </div>
             </div>
           </div>`;
+      }
+      for(let i=0; i < myArray.length; i++ ){
+        if(storedEmail == myArray[i].email){
+          navbar.innerHTML = "";
+          navbar.innerHTML += `
+            <a class="navbar-brand" href="#">Services</a>
+            <!-- Icons -->
+            <ul class="navbar-nav d-flex flex-row me-1">
+                <li class="nav-item dropdown">
+                    <!-- Dropdown menu -->
+                    <div class="dropdown">
+                      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Profile
+                      </a>
+
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item disabled" href="#">${myArray[i].first_name +" "+ myArray[i].last_name}</a></li>
+                        <li><a class="dropdown-item" onclick="tokenDelete()" href="./login.html">Log out</a></li>
+                      </ul>
+                    </div>
+                </li>
+            </ul>`;
+        }
       }
       
     });

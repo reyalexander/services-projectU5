@@ -23,28 +23,11 @@ let formValidation = () => {
     }
   };
 
-  URL = 'http://127.0.0.1:8000/api/users/'
+URL = 'http://127.0.0.1:8000/api/users/';
 
-let apiData;
-const datos = []
-const dataUsers = fetch(URL)
-.then(response => response.json())
-.then(data => {
-    apiData = data;
-});
-
-datos = apiData
-
-// Get the string representation of the users array from local storage
-let usersString = localStorage.getItem("users");
-
-// Parse the string into an array of users
-let users = JSON.parse(usersString);
-
-function tokenSave(tokens,email,datos){
+function tokenSave(tokens,email){
     localStorage.tokens = JSON.stringify(tokens);
     localStorage.email = JSON.stringify(email);
-    localStorage.datos = JSON.stringify(users);
 }
 
 function tokenRead(){
@@ -88,7 +71,7 @@ async function apiLoginToken(){
             text: "¡Email o contraseña incorrecta!"
         }) 
     }
-    tokenSave(resData.tokens.access, resData.email, resData.first_name, resData.last_name, resData.is_superuser);
+    tokenSave(resData.tokens.access, resData.email);
     return resData;
 }
 
