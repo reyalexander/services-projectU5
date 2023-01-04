@@ -95,7 +95,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'project.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -109,7 +108,21 @@ DATABASES = {
         'PASSWORD': 'root',
     }
 }
+"""
+# Database on Railway Deploy 
+# mysql://root:@:/railway
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'railway',
+        'PORT': '5616',
+        'HOST': 'containers-us-west-166.railway.app',
+        'USER': 'root',
+        'PASSWORD': 'uzQt4fm9c8EsebQoumPR',
+    }
+}
+"""
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators

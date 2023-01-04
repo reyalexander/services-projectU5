@@ -42,6 +42,19 @@ for(i=0; i< myArray.length; i++){
   }
 }
 
+// Retrieve the string from localStorage
+const arrayServices = localStorage.getItem('myServices');
+// Convert the string back into an array
+const myServices = JSON.parse(arrayServices);
+
+for(i=0; i< myServices.length; i++){
+  console.log(myServices[i].results.name)
+  if(myServices[i].name == service.value){
+    console.log('ID: ', myServices[i].id)
+  }
+}
+
+
 URL = 'http://127.0.0.1:8000/api/'
 async function acceptData(){
     const data = {
@@ -67,7 +80,7 @@ async function acceptData(){
                 'success'
               ).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.replace("./index.html");
+                    window.location.replace("../index.html");
                 }
             }) 
         }

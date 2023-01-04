@@ -3,7 +3,6 @@ from .serializers import *
 from rest_framework.response import Response
 from rest_framework import status, viewsets,filters
 from rest_framework.permissions import IsAuthenticated,AllowAny
-from django.shortcuts import get_object_or_404
 from .pagination import *
 
 

@@ -25,6 +25,26 @@ let formValidation = () => {
 
 URL = 'http://127.0.0.1:8000/api/users/';
 
+fetch('http://127.0.0.1:8000/api/users/')
+  .then(response => response.json())
+  .then(myArray => {
+    // Convert the array into a string
+    const arrayString = JSON.stringify(myArray);
+
+    // Store the string in localStorage
+    localStorage.setItem('myArray', arrayString);
+  });
+
+fetch('http://127.0.0.1:8000/api/services/add_service/')
+  .then(response => response.json())
+  .then(myServices => {
+    // Convert the array into a string
+    const arrayString = JSON.stringify(myServices);
+
+    // Store the string in localStorage
+    localStorage.setItem('myServices', arrayString);
+  });
+
 function tokenSave(tokens,email){
     localStorage.tokens = JSON.stringify(tokens);
     localStorage.email = JSON.stringify(email);

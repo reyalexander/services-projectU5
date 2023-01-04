@@ -6,24 +6,12 @@ const body2 = document.querySelector("body2");
 
 URL = 'http://127.0.0.1:8000/api/';
 
-fetch('http://127.0.0.1:8000/api/users/')
-  .then(response => response.json())
-  .then(myArray => {
-    // Convert the array into a string
-    const arrayString = JSON.stringify(myArray);
-
-    // Store the string in localStorage
-    localStorage.setItem('myArray', arrayString);
-  });
-
 // Retrieve the string from localStorage
 const arrayString = localStorage.getItem('myArray');
-
 // Convert the string back into an array
 const myArray = JSON.parse(arrayString);
 
 let storedEmail = JSON.parse(localStorage.getItem("email"))
-
 
 async function getTask() {
   const id = new URLSearchParams(window.location.search).get("id");
@@ -42,19 +30,19 @@ function renderTasks(data) {
   const tok = localStorage.getItem('tokens')
   console.log(tok)
   if (tok == null){
-    window.location.href = "./login.html";
+    window.location.href = "services-frontend/login.html";
   }else{
     main.innerHTML = "";
     main.innerHTML += `      
     <div class="mb-5">
-      <a href="./post.html" class="btn btn-primary">Crear Pago</a>
+      <a href="services-frontend/post.html" class="btn btn-primary">Crear Pago</a>
     </div>`;
 
     for(let j=0; j < myArray.length; j++ ){
       if (myArray[j].email == storedEmail && myArray[j].is_superuser == true){
         main.innerHTML += `      
         <div class="mb-5">
-          <a href="./post_service.html" class="btn btn-success">Crear Servicio</a>
+          <a href="services-frontend/post_service.html" class="btn btn-success">Crear Servicio</a>
         </div>`;
       }
     }
@@ -93,7 +81,7 @@ function renderTasks(data) {
                   </div>
                   
                   <div class="mb-3 text-center">
-                    <a href="./edit.html?id=${id}" class="btn btn-primary">Editar</a>
+                    <a href="services-frontend/edit.html?id=${id}" class="btn btn-primary">Editar</a>
                     <button onclick="deleteTodo()" class="btn btn-danger">Eliminar</button>
                   </div>
                 </div>
@@ -147,8 +135,8 @@ function renderTodo(data) {
           <p class="fs-5 col-md-8"><small>Payment date:<br> ${service_payments[i].payment_date}</small></p>
           <p class="card-text"><small class="text-muted">Expiration date: ${service_payments[i].expiration_date}</small></p>
           <div class="mb-5">
-            <a href="./index.html" class="btn btn-primary">Regresar</a>
-            <a href="./edit_service.html?id=${id}" class="btn btn-primary">Editar</a>
+            <a href="services-frontend/index.html" class="btn btn-primary">Regresar</a>
+            <a href="services-frontend/edit_service.html?id=${id}" class="btn btn-primary">Editar</a>
             <button onclick="deleteTodo()" class="btn btn-danger">Eliminar</button>
           </div>
         </main>
@@ -175,7 +163,7 @@ function renderServices(data) {
   const tok = localStorage.getItem('tokens')
   console.log(tok)
   if (tok == null){
-    window.location.href = "./login.html";
+    window.location.href = "services-frontend/login.html";
   }else{
     secondary.innerHTML = "";
     
@@ -209,7 +197,7 @@ function renderServices(data) {
                 </div>
                 
                 <div class="mb-3 text-center">
-                  <a href="./edit_service.html?id=${id}" class="btn btn-primary">Editar</a>
+                  <a href="services-frontend/edit_service.html?id=${id}" class="btn btn-primary">Editar</a>
                   <button onclick="deleteTodo()" class="btn btn-danger">Eliminar</button>
                 </div>
               </div>
@@ -235,8 +223,8 @@ function renderServicios(data) {
             Description: ${description}
           </p>
           <div class="mb-5">
-            <a href="./index.html" class="btn btn-primary">Regresar</a>
-            <a href="./edit_service.html?id=${id}" class="btn btn-primary">Editar</a>
+            <a href="services-frontend/index.html" class="btn btn-primary">Regresar</a>
+            <a href="services-frontend/edit_service.html?id=${id}" class="btn btn-primary">Editar</a>
             <button onclick="deleteTodo()" class="btn btn-danger">Eliminar</button>
           </div>
         </main>
